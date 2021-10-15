@@ -1,11 +1,613 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThreeJS Starter</title>
-</head>
-<body>
-    <canvas class="webgl"></canvas>
-</body>
+<html lang="fa-IR" dir="rtl">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+      <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+      <link rel="icon" href="data:image/png;base64,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">
+      <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+      <title>ساعت رادین</title>
+   </head>
+   <body>
+      <!-- container -->
+      <div class="container"  >
+         <div class="content"data-aos="fade-left">
+            <nav class="p-2 mr-1">
+               <ul>
+                  <li>
+                     <a class="btn btn-outline-secondary p-3 m-2 text-light" href="#taamas"><strong> ارتباط با ما</strong></a>
+                     <a class="btn btn-outline-secondary p-3 m-2 text-light" href="#sal"><strong> محصولات</strong></a>
+                     <a class="btn btn-outline-secondary p-3 m-2 text-light" href="#para" ><strong> درباره ما</strong></a>
+                     <a class="btn btn-outline-secondary p-3 m-2 text-light" href="#ghore"><strong> قرعه کشی</strong></a>
+                  </li>
+               </ul>
+            </nav>
+            <!-- opening page -->
+            <div id="rocks" class="float-left justify-content-left">
+               <a href="#" class="text-light"style="font-family: fantasy">
+                  <h1>ساعت رادین</h1>
+               </a>
+               <h5>ارائه دهنده انواع ساعت های زنانه و مردانه </h5>
+               <a id="mah" class="btn p-4 m-3" href="#sal" style="background-color: rgb(90, 9, 9); color: white;"><strong>برای دیدن محصولات کلیک کنید</strong></a>
+            </div>
+         </div>
+      </div>
+      </a>
+      </div>
+      <!-- threejs -->
+      <canvas class="webgl"></canvas>
+      <!-- closing threejs part -->
+      </div>
+      <!-- opening the site parts -->
+      <div id="sal">
+         <div class="card-group text-dark">
+            <h3 class="mt-4 p-3" style="text-align: center; width: 100%; background-color: rgb(223, 219, 219); color: black; font-size: 2rem; font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">محصولات
+               :
+            </h3>
+            <div id="car">
+               <!-- start of carousel -->
+               <div id="fin">
+                  <!-- carousel one -->
+                  <div id="carouselExampleIndicators"  data-aos="flip-up" class="carousel slide mw-100 col-sm" data-ride="carousell">
+                     <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                     </ol>
+                     <div class="carousel-inner" >
+                        <div class="carousel-item active">
+                           <img class="d-block w-100" src="https://i1.adis.ws/i/tom_ford/TFT002-2_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)" alt="First slide">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5 style="background-color: #a10b0b; color: white; font: 10px; padding: 3px"> ساعت البرز</h5>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" src="https://i1.adis.ws/i/tom_ford/TFT002-3_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)" alt="Second slide">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5 style="background-color: #a10b0b; color: white; font: 10px; padding: 3px">ساعت اورست</h5>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" src="https://i1.adis.ws/i/tom_ford/TFT002-023_OPWBLK_OS_A?$pdp_hero_dsk$&bg=rgb(218,218,218)" alt="Third slide">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5 style="background-color: #a10b0b; color: white; font: 10px; padding: 3px">ساعت زاگرس</h5>
+                           </div>
+                        </div>
+                     </div>
+                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Previous</span>
+                     </a>
+                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Next</span>
+                     </a>
+                  </div>
+                  <!-- carousel two -->
+                  <div id="carouselExampleIndicators" data-aos="flip-up" class="carousel slide col" data-ride="carouselll">
+                     <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                     </ol>
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <img class="d-block w-100" src="https://i1.adis.ws/i/tom_ford/TFT002-023_OPWBLK_OS_A?$pdp_hero_dsk$&bg=rgb(218,218,218)" alt="First slide">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5 style="background-color: #a10b0b; color: white; font: 10px; padding: 3px"> ساعت البرز</h5>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" src="https://i1.adis.ws/i/tom_ford/TFT002-2_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)" alt="Second slide">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5 style="background-color: #a10b0b; color: white; font: 10px; padding: 3px">ساعت اورست</h5>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" src="https://i1.adis.ws/i/tom_ford/TFT002-3_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)" alt="Third slide">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5 style="background-color: #a10b0b; color: white; font: 10px; padding: 3px">ساعت زاگرس</h5>
+                           </div>
+                        </div>
+                     </div>
+                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Previous</span>
+                     </a>
+                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Next</span>
+                     </a>
+                  </div>
+                  <!-- carousel three -->
+                  <div id="carouselExampleIndicators" data-aos="flip-up"  class="carousel slide col-sm" data-ride="carousel">
+                     <ol class="carousel-indicators">
+                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                     </ol>
+                     <div class="carousel-inner">
+                        <div class="carousel-item active">
+                           <img class="d-block w-100" src="https://i1.adis.ws/i/tom_ford/TFT002-3_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)" alt="First slide">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5 style="background-color: #a10b0b; color: white; font: 10px; padding: 3px">ساعت کرمانی</h5>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" src="https://i1.adis.ws/i/tom_ford/TFT002-3_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)" alt="Second slide">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5 style="background-color: #a10b0b; color: white; font: 10px; padding: 3px">ساعت تهرانی</h5>
+                           </div>
+                        </div>
+                        <div class="carousel-item">
+                           <img class="d-block w-100" src="https://i1.adis.ws/i/tom_ford/TFT002-023_OPWBLK_OS_A?$pdp_hero_dsk$&bg=rgb(218,218,218)" alt="Third slide">
+                           <div class="carousel-caption d-none d-md-block">
+                              <h5 style="background-color: #a10b0b; color: white; font: 10px; padding: 3px;" >ساعت هیمالیا</h5>
+                           </div>
+                        </div>
+                     </div>
+                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                     <span class="sr-only">Previous</span>
+                     </a>
+                     <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                     <span class="sr-only text-dark">Next</span>
+                     </a>
+                  </div>
+               </div>
+               <!-- end of carousel -->
+               <!-- start of attention part -->
+               <div id="bala" data-aos="zoom-in">
+                  <img style="margin-right: 1rem;" width="90px" src="data:image/png;base64,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" alt="">
+                  <h3 style="margin: 2rem;">
+                     با خرید از فروشگاه ما یک ساعت زیبای <mark>tissot</mark>  هدیه بگیرید<br>
+                     <div>
+                        <span id="countdown" style="margin-top: 1.5rem;"></span>
+                     </div>
+                  </h3>
+                  <br>
+                  <br>
+                  <img width="150px" src="https://s3.amazonaws.com/ISHOWIMAGES/tissot/5x8/500/16003019_0.png" alt="">
+               </div>
+            </div>
+            <!-- end of attention part -->
+            <!-- start of products cards -->
+            <!-- card one -->
+            <div class="card m-4"id="cardd" data-aos="fade-up" >
+               <img src="https://i1.adis.ws/i/tom_ford/TFT002-023_OPWBLK_OS_A?$pdp_hero_dsk$&bg=rgb(218,218,218)"
+                  class="card-img-top" alt="pic">
+               <div class="card-body">
+                  <h5 id="card-title" class="card-title" style="text-align: center; background-color: rgb(128, 12, 12);
+                     padding: 3px;
+                     color: white;"><strong>ساعت البرز</strong></h5>
+                  <p class="card-text" style="text-align: center;">ساعتی بسیار زیبا و جذاب و اصل و عالی</p>
+                  <div style="text-align: center;">
+                     <a class="btn" style="text-align:center; background-color:#df1878; color: white;">23 هزارتومان</a>
+                     <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                        data-placement="top"
+                        data-content="این ساعت ساخت شرکت رادین است و بدون هیچگونه ضربه دیدگی در طراح های مختلف ارائه میشود">جزئیات</button>
+                  </div>
+               </div>
+            </div>
+            <!-- card two -->
+            <div class="card m-4" id="cardd" data-aos="fade-down">
+               <img src="https://i1.adis.ws/i/tom_ford/TFT002-3_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)"
+                  class="card-img-top" alt="pic">
+               <div class="card-body">
+                  <h5 class="card-title" style="text-align: center; background-color: rgb(128, 12, 12);
+                     padding: 3px;
+                     color: white;"><strong>ساعت زاگرس</strong></h5>
+                  <p class="card-text" style="text-align: center;">ساعتی بسیار زیبا و جذاب و اصل و عالی</p>
+                  <div style="text-align: center;">
+                     <button class="btn" style="text-align:center; background-color:#df1878; color: white;">23 هزارتومان</button>
+                     <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                        data-placement="top"
+                        data-content="این ساعت ساخت شرکت رادین است و بدون هیچگونه ضربه دیدگی در طراح های مختلف ارائه میشود">
+                     جزئیات
+                     </button>
+                  </div>
+               </div>
+            </div>
+            <!-- card three -->
+            <div class="card m-4"id="cardd" data-aos="fade-left" >
+               <img src="https://i1.adis.ws/i/tom_ford/TFT002-3_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)"
+                  class="card-img-top" alt="pic">
+               <div class="card-body">
+                  <h5 class="card-title" style="text-align: center; background-color: rgb(128, 12, 12);
+                     padding: 3px;
+                     color: white;"><strong>ساعت زاگرس</strong></h5>
+                  <p class="card-text" style="text-align: center;">ساعتی بسیار زیبا و جذاب و اصل و عالی</p>
+                  <div style="text-align: center;">
+                     <button class="btn" style="text-align:center  ;background-color:#df1878; color: white;">23 هزارتومان</button>
+                     <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                        data-placement="top"
+                        data-content="این ساعت ساخت شرکت رادین است و بدون هیچگونه ضربه دیدگی در طراح های مختلف ارائه میشود">جزئیات</button>
+                  </div>
+               </div>
+            </div>
+            <!-- card four -->
+            <div class="card m-4"id="cardd" data-aos="fade-up">
+               <img src="https://i1.adis.ws/i/tom_ford/TFT002-3_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)"
+                  class="card-img-top" alt="pic">
+               <div class="card-body">
+                  <h5 class="card-title" style="text-align: center; background-color: rgb(128, 12, 12);
+                     padding: 3px;
+                     color: white;"><strong>ساعت دماوند</strong></h5>
+                  <p class="card-text" style="text-align: center;">ساعتی بسیار زیبا و جذاب و اصل و عالی</p>
+                  <div style="text-align: center;">
+                     <button class="btn" style="text-align:center; background-color:#df1878; color: white;">23 هزارتومان</button>
+                     <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                        data-placement="top"
+                        data-content="این ساعت ساخت شرکت رادین است و بدون هیچگونه ضربه دیدگی در طراح های مختلف ارائه میشود">جزئیات</button>
+                  </div>
+               </div>
+            </div>
+            <div class="card-group ">
+               <!-- card five -->
+               <div class="card m-4"id="cardd" data-aos="fade-down" >
+                  <img src="https://i1.adis.ws/i/tom_ford/TFT002-023_OPWBLK_OS_A?$pdp_hero_dsk$&bg=rgb(218,218,218)"
+                     class="card-img-top" alt="pic">
+                  <div class="card-body">
+                     <h5 class="card-title" style="text-align: center; background-color: rgb(128,12, 12);
+                        padding: 3px;
+                        color: white;"><strong>ساعت هزار</strong></h5>
+                     <p class="card-text" style="text-align: center;">ساعتی بسیار زیبا و جذاب و اصل و عالی</p>
+                     <div style="text-align: center;">
+                        <button class="btn" style="text-align:center ; background-color:#df1878; color: white;">23 هزارتومان</button>
+                        <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                           data-placement="top"
+                           data-content="این ساعت ساخت شرکت رادین است و بدون هیچگونه ضربه دیدگی در طراح های مختلف ارائه میشود">جزئیات</button>
+                     </div>
+                  </div>
+               </div>
+               <!-- card six -->
+               <div class="card m-4"id="cardd"  data-aos="fade-up">
+                  <img src="https://i1.adis.ws/i/tom_ford/TFT002-3_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)"
+                     class="card-img-top" alt="pic">
+                  <div class="card-body">
+                     <h5 class="card-title" style="text-align: center; background-color: rgb(128,12, 12);
+                        padding: 3px;
+                        color: white;"><strong></strong>ساعت اورست</strong></h5>
+                     <p class="card-text" style="text-align: center;">ساعتی بسیار زیبا و جذاب و اصل و عالی</p>
+                     <div style="text-align: center;">
+                        <button class="btn" style="text-align:center; background-color:#df1878; color: white;">23 هزارتومان</button>
+                        <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                           data-placement="top"
+                           data-content="این ساعت ساخت شرکت رادین است و بدون هیچگونه ضربه دیدگی در طراح های مختلف ارائه میشود">جزئیات</button>
+                     </div>
+                  </div>
+               </div>
+               <!-- card seven -->
+               <div class="card m-4"id="cardd" data-aos="fade-left" >
+                  <img src="https://i1.adis.ws/i/tom_ford/TFT002-3_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)"
+                     class="card-img-top" alt="pic">
+                  <div class="card-body">
+                     <h5 class="card-title" style="text-align: center; background-color: rgb(128,12, 12);
+                        padding: 3px;
+                        color: white;"><strong>ساعت زاگرس</strong></h5>
+                     <p class="card-text" style="text-align: center;">ساعتی بسیار زیبا و جذاب و اصل و عالی</p>
+                     <div style="text-align: center;">
+                        <button class="btn" style="text-align:center; background-color:#df1878; color: white;">23 هزارتومان</button>
+                        <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                           data-placement="top"
+                           data-content="این ساعت ساخت شرکت رادین است و بدون هیچگونه ضربه دیدگی در طراح های مختلف ارائه میشود">جزئیات</button>
+                     </div>
+                  </div>
+               </div>
+               <!-- card eight -->
+               <div class="card m-4"id="cardd"  data-aos="fade-up">
+                  <img src="https://i1.adis.ws/i/tom_ford/TFT002-2_BUNDLE_A?$pdp_hero_dsk$&bg=rgb(218,218,218)"
+                     class="card-img-top" alt="pic">
+                  <div class="card-body">
+                     <h5 class="card-title" style="text-align: center; background-color: rgb(128,12, 12);
+                        padding: 3px;
+                        color: white;"><strong>ساعت کرمانی</strong></h5>
+                     <p class="card-text" style="text-align: center;">ساعتی بسیار زیبا و جذاب و اصل و عالی</p>
+                     <div style="text-align: center;">
+                        <button class="btn" style="text-align:center; background-color:#df1878; color: white;">23 هزارتومان</button>
+                        <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover"
+                           data-placement="top"
+                           data-content="این ساعت ساخت شرکت رادین است و بدون هیچگونه ضربه دیدگی در طراح های مختلف ارائه میشود">جزئیات</button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <!-- end of the products cards -->
+            <div id="toggle" style="text-align: center;" >
+               <!-- start od contact part -->
+               <div id="taamas" data-aos="flip-right" style="margin: 2rem;">
+                  <div id="ertebat" style="text-align: center;">
+                     <h3>جهت ارتباط با فروشگاه میتوانید همه روزه <br> از ساعت 8 صبح الی 8 شب <br> به فروشگاه مراجعه کنید  و<br> یا در صورت نیاز از ایمیل و یا شماره تلفن با فروشگاه در ارتباط باشید</h3>
+                  </div>
+                  <div id="tams" style="margin: 1rem;">
+                     <!-- email -->
+                     <div id="tamas">
+                        <button id="btnn" data-toggle="collapse" data-target="#demo">
+                           <bold>ایمیل</bold>
+                        </button>
+                        <div id="demo" class="collapse">
+                           <h5 style="color: white; margin: 2px;">radin-watch@gmail.com</h5>
+                           <a class="btn text-light" style="margin: 5px 3px 0px 3px; background-color: #0062cc;" href="mailto: behanmi454@gmail.com" target="_blank">برای ارسال ایمیل مستقیم کلیک کنید<i class="icon-envelope"></i></a>
+                        </div>
+                     </div>
+                     <!-- telephone -->
+                     <div id="tamas" >
+                        <button id="btnn" data-toggle="collapse" data-target="#demoo">
+                           <bold>تلفن</bold>
+                        </button>
+                        <div id="demoo" class="collapse">
+                           <h5 style="color: white; margin: 2px;">09307974253</h5>
+                           <a class="btn text-light" style="margin: 5px 3px 0px 3px; background-color: #0062cc;" href="https://api.whatsapp.com/send?phone=00989307974253" target="_blank">برای ارسال پیام در واتس اپ کلیک کنید<i class="icon-whatsapp"></i></a>
+                        </div>
+                     </div>
+                     <!-- instagram and ... -->
+                     <div id="tamas">
+                        <button id="btnn" data-toggle="collapse" data-target="#demoooi">
+                           <bold>مجازی</bold>
+                        </button>
+                        <div id="demoooi" class="collapse">
+                           <h5 style="color: white; margin: 2px;">radin-watch@</h5>
+                           <a class="btn text-light" style="margin: 5px 3px 0px 3px; background-color: #0062cc;" href="#foot2">برای دیدن صفحات اجتماعی کلیک کنید</a>
+                        </div>
+                     </div>
+                     <!-- address -->
+                     <div id="tamas">
+                        <button id="btnn" data-toggle="collapse" data-target="#demooo">
+                           <bold>ادرس</bold>
+                        </button>
+                        <div id="demooo" class="collapse">
+                           <h5 style="color: white; margin: 2px;">کرمان خیابان شفا کوچه شماره 3</h5>
+                           <a class="btn text-light" style="margin: 5px 3px 0px 3px; background-color: #0062cc;" href="#foot4">برای دیدن ادرس در نقشه کلیک کنید</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div id="ghoree" data-aos="flip-left">
+                  <!-- form -->
+                  <div id="ghore2"  data-aos="zoom-in">
+                     <form class="form-horizontal text-light" action="#">
+                        <div class="form-group">
+                           <b><label class="control-label col-sm-2" for="namee">نام:</label></b>
+                           <div id="col" class="col-sm-10">
+                              <input type="email" class="form-control" id="pwd" placeholder="نام خود را وارد کنید">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <b><label class="control-label col-sm-2" for="address">ادرس:</label></b>
+                           <div id="col" class="col-sm-10">
+                              <input type="email" class="form-control" id="pwdd" placeholder="ادرس را وارد کنید">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <b><label class="control-label col-sm-2" for="emaill">ایمیل:</label></b>
+                           <div id="col" class="col-sm-10">
+                              <input type="email" class="form-control" id="pwddd" placeholder="ایمیل را وارد کنید">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <b><label class="control-label col-sm-2" for="passwordd">پسورد:</label></b>
+                           <div id="col" class="col-sm-10">
+                              <input type="password" class="form-control" id="pwdddd" placeholder="پسورد را وارد کنید">
+                           </div>
+                        </div>
+                        <div class="form-group">
+                           <button class="btn btn-danger p-3 mt-2">ارسال</button>
+                        </div>
+                  </div>
+                  <!-- end of form -->
+                  <!-- lottery -->
+                  <div id="ghore" style="text-align: center;" >
+                  <img width="380px" style="margin: 2rem;" src="https://www.pngitem.com/pimgs/m/400-4001105_happy-guy-pointing-right-gentleman-hd-png-download.png" alt="">
+                  <h3 style="margin: 1rem;">
+                  برای شرکت در قرعه کشی 20 عدد ساعت  <mark>رولکس</mark> با <br> روکش طلا میتوانید اطلاعات خود<br>  را در فرم ثبت نمایید تا در صورت برنده شدن با شما تماس گرفته شود</h3>
+                  </div>
+               </div>
+               <!-- end of lottery -->
+            </div>
+            <!-- about us -->
+            <div id="para" data-aos="fade-left">
+            <p>فروشگاه رادین بزرگترین فروشگاه ساعت در کرمان با خدمات متنوع و محصولات با کیفیت است که شامل ساعت های زنانه و مردانه و بچگانه است که در طرح ها و رنگ ها و نقش های مختلف عرضه میگردد . رادین مفتخر است که 90 درصد مشتری های ما رضایت کامل ازخدمات و قیمت و جنس محصولات از فروشگاه ما  دارند </p>
+            <div class="row" style="margin-top: 2rem;">
+            <div class="col-md-3 col-sm-6">
+            <div class="progress blue" style="margin-top: 2rem;">
+            <span class="progress-left">
+            <span class="progress-bar"></span>
+            </span>
+            <span class="progress-right">
+            <span class="progress-bar"></span>
+            </span>
+            <div class="progress-value">90%</div>
+            </div>
+            </div>
+            <div id="imgi" style="margin-top: 1rem;">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRto2dRQaw-ajnsudpU8reIWHM0uEl2GwLRq3EziT4G9f7FZA0wGt69P-DjlY0fNUuJ7TI&usqp=CAU" alt="" width="200px" height="200px" style="margin: 2px;">
+            <img src="https://www.icon-icon.com/wp-content/uploads/2020/06/icon-icon-logo-omega.jpg" alt=""width="200px" height="200px" style="margin: 2px;">
+            <img src="https://static.vecteezy.com/system/resources/thumbnails/003/189/903/small/watch-classic-logo-icon-design-vector.jpg" alt=""width="200px" height="200px" style="margin: 2px;">
+            <img src="https://i.pinimg.com/236x/25/e5/13/25e51374638319572a04670038461be8.jpg" alt=""width="200px" height="200px" style="margin: 2px;">
+            </div>
+            <!-- sidebar -->
+            <div id="slid">
+            <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#">Rolex</a>
+            <a href="#">Patek Philippe</a>
+            <a href="#">Audemars Piguet</a>
+            <a href="#">A.Lange & Söhne</a>
+            <a href="#">Omega</a>
+            <a href="#">Blancpain</a>
+            <a href="#">IWC Schaffhausen</a>
+            <a href="#">Jaeger-LeCoultre</a>
+            </div>
+            <div id="sol">
+            <h5 style="margin-bottom:1.5rem ;">برای دیدن تمام برند های موجود روی دکمه زیر کلیک کنید</h5>
+            <button class="btn" style="background-color: rgb(252, 252, 252);"><span onclick="openNav()"><strong>برند ها</strong></span></button> 
+            </div>
+            <!-- end of sidebar -->
+            </div>
+            </div>
+            <div>
+            </div>
+            </div>
+            <!-- end of about us -->
+            <!-- up botton -->
+            <button onclick="topFunction()" id="myBtn" title="Go to top">بالا</button>
+            <!-- end of up botton -->
+            <!-- footer -->
+            <div id="foot" data-aos="zoom-in">
+            <div id="foot1" class="m-4">
+            <a class="m-3 text-light" href="#ertebat"><h4>ارتباط با ما</h4></a>
+            <a class="m-3 text-light" href="#para"><h4>درباره ما</h4></a>
+            <a class="m-3 text-light" href="#ghore"><h4>قرعه کشی</h4></a>
+            <a class="m-3 text-light" href="#sal"><h4>محصولات</h4></a>
+            </div>
+            <div id="foot2">
+            <a class="text-light m-2" href="mailto: behanmi454@gmail.com" target="_blank"><h4>email</h4><i class="icon-envelope"></i></a>
+            <a class="text-light m-2" href="https://api.whatsapp.com/send?phone=00989307974253" target="_blank"><h4>whatsapp</h4><i class="icon-whatsapp"></i></a>
+            <a class="text-light m-2" href="https://instagram.com/behnam_4" target="_blank"><h4>instagram</h4><i class="icon-instagram"></i></a>
+            <a class="text-light m-2" href="https://github.com/behnami454" target="_blank"><h4>github</h4><i class="icon-github"></i></a>
+            <a class="text-light m-2" href="https://www.linkedin.com/in/behnam-iranmanesh-dev/" target="_blank"><h4>linkedin</h4><i class="icon-linkedin"></i></a>
+            </div>
+            <div id="foot3" class="m-4">
+            <h4>4255 766 0913</h4>
+            <h4>radin-watch@gmail.com</h4>
+            <h4>کرمان خیابان شفا</h4>
+            <h4>radin-watch@</h4>
+            <h4>3444 455 034</h4>
+            </div>
+            <div id="foot4" class="m-4">
+            <h4>فروشگاه رادین اول و بزرگترین فروشگاه<br> ساعت کرمان با بیش از 40 سال سابقه</h4>
+            <a></a><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3445.291969608576!2d57.03171041444969!3d30.285748714089237!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f02189560087089%3A0xb0e62976e84e4d3c!2zS2VybWFuIFByb3ZpbmNlLCBLZXJtYW4sINi02YHYpyAz2IwgSXJhbg!5e0!3m2!1sen!2s!4v1633926141840!5m2!1sen!2s" width="100%" height="300" margin-top="2px" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+            </div>
+         </div>
+      </div>
+      </form>
+      </div>
+      <div>
+      </div>
+      </div>
+      </div>
+      </div>
+      <!-- end of footer -->
+      <!-- timer -->
+      <script>
+         var current_level = 3033002;
+         
+         function timer() {
+         
+            var days = Math.floor(current_level/86400);
+            var remainingDays = current_level - (days * 86400);
+         
+            //if (days <= 0){
+            //    days = current_level;
+            //}
+         
+            var hours = Math.floor(remainingDays/3600);
+            var remainingHours = remainingDays - (hours * 3600);
+         
+            //if (hours >= 24){
+            //     hours = 23;
+            //}
+         
+            var minutes = Math.floor(remainingHours/60);
+            var remainingMinutes = remainingHours - (minutes * 60);
+         
+            //if (minutes >= 60) {
+            //     minutes = 59;
+            //}
+         
+            var seconds = remainingMinutes;
+         
+            document.getElementById('countdown').innerHTML = days + ":" + hours + ":" + minutes + ":" + seconds;
+             //if (seconds == 0) {
+            //    clearInterval(countdownTimer);
+            //     document.getElementById('countdown').innerHTML = "Completed";
+            //}
+         
+            current_level--;
+         }
+         var countdownTimer = setInterval(timer, 1000);
+      </script>
+      <!-- end of timer -->
+      <!-- aos -->
+      <script>
+         AOS.init();
+      </script>
+      <!-- end of aos -->
+      <!-- up botton -->
+      <script>
+         //Get the button:
+         mybutton = document.getElementById("myBtn");
+         
+         // When the user scrolls down 20px from the top of the document, show the button
+         window.onscroll = function() {scrollFunction()};
+         
+         function scrollFunction() {
+           if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+             mybutton.style.display = "block";
+           } else {
+             mybutton.style.display = "none";
+           }
+         }
+         
+         // When the user clicks on the button, scroll to the top of the document
+         function topFunction() {
+           document.body.scrollTop = 0; // For Safari
+           document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+         }
+      </script>
+      <!-- end of sidebar -->
+      <script>
+         /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+         function openNav() {
+         document.getElementById("mySidenav").style.width = "250px";
+         document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+         }
+         
+         /* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+         function closeNav() {
+         document.getElementById("mySidenav").style.width = "0";
+         document.body.style.backgroundColor = "white";
+         }
+      </script>
+      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+         crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+         crossorigin="anonymous"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+         crossorigin="anonymous"></script>
+      <!-- popover -->
+      <script>
+         $(document).ready(function () {
+           $('[data-toggle="popover"]').popover();
+         });
+      </script>
+      <!-- enf of popover -->  
+      <!-- carousel -->
+      <script>
+         $('.carousel').carousel({
+         interval: 2500
+         })
+      </script>
+      <!-- end of carousel -->
+      <!-- carousel delay -->
+      <script>
+         $('.carousell').carousel({
+         interval: 1500
+         })
+      </script>
+      <script>
+         $('.carouselll').carousel({
+         interval: 500
+         })
+      </script>
+      <!-- end of carousel delay -->
+   </body>
 </html>
